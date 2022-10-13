@@ -8,6 +8,7 @@ import {
   DashboardOutline,
   LoginOutline,
   LogoutOutline,
+  PlusOutline,
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -17,6 +18,7 @@ const icons = [
   FormOutline,
   LoginOutline,
   LogoutOutline,
+  PlusOutline,
 ];
 
 @NgModule({

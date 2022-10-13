@@ -13,7 +13,8 @@
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,9 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@apollo/client": "~3.5.0",
+    "apollo-angular": "^4.1.0",
+    "graphql": "^15",
     "ng-zorro-antd": "^14.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
@@ -34,6 +38,10 @@
     "@angular-devkit/build-angular": "^14.2.5",
     "@angular/cli": "~14.2.5",
     "@angular/compiler-cli": "^14.2.0",
+    "@graphql-codegen/cli": "^2.13.7",
+    "@graphql-codegen/typescript": "^2.7.4",
+    "@graphql-codegen/typescript-apollo-angular": "^3.5.4",
+    "@graphql-codegen/typescript-operations": "^2.5.4",
     "@types/jasmine": "~4.0.0",
     "@types/node": "^14.11.2",
     "gts": "^3.1.1",

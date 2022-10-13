@@ -1,0 +1,36 @@
+query books {
+  books {
+    id
+    title
+    author
+    reader
+    state
+    error
+    download {
+      state
+      error
+    }
+  }
+}
+
+query book($id: ID!) {
+  book(id: $id) {
+    id
+    title
+    author
+    reader
+
+    parts {
+      title
+      possition
+      path
+    }
+  }
+}
+
+mutation createBook($input: NewBookInput!) {
+  createBook(input: $input) {
+    title
+    id
+  }
+}

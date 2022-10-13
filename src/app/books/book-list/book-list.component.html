@@ -1,1 +1,94 @@
-<p>book-list works!</p>
+<nz-page-header nzTitle="Books">
+  <nz-page-header-extra>
+    <nz-space>
+      <button *nzSpaceItem nz-button nzType="primary" routerLink="/books/new">
+        <span nz-icon nzType="plus" nzTheme="outline"></span> New book
+      </button>
+    </nz-space>
+  </nz-page-header-extra>
+</nz-page-header>
+
+<ng-template #spiner>
+  <nz-spin nzSimple></nz-spin>
+</ng-template>
+
+<ng-container *ngIf="books; else spiner">
+  <ng-template #elseTemplate> </ng-template>
+
+  <nz-table if #basicTable [nzData]="(books | async)!">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Reader</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of basicTable.data">
+        <td>{{ book.id }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.reader }}</td>
+        <td>
+          <nz-badge
+            nzStatus="success"
+            nzText="done"
+            *ngIf="book.state === 'ready'"
+          ></nz-badge>
+          <nz-badge
+            nzStatus="error"
+            nzText="error"
+            *ngIf="book.state === 'error'"
+          ></nz-badge>
+          <nz-badge
+            nzStatus="processing"
+            nzText="converting"
+            *ngIf="book.state === 'download' && book.download.state === 'done'"
+          ></nz-badge>
+          <ng-container
+            *ngIf="book.state === 'download' && book.download.state !== 'done'"
+          >
+            <nz-badge
+              nzStatus="processing"
+              nzText="download"
+              *ngIf="book.download.state == 'in_progress'"
+            ></nz-badge>
+            <nz-badge
+              nzStatus="error"
+              nzText="error"
+              *ngIf="book.download.state === 'error'"
+            ></nz-badge>
+            <nz-badge
+              nzStatus="default"
+              nzText="new"
+              *ngIf="book.download.state === 'new'"
+            ></nz-badge>
+          </ng-container>
+        </td>
+        <td>
+          <a
+            nz-popconfirm
+            nzPopconfirmTitle="Are you sure restart this book?"
+            nzPopconfirmPlacement="bottom"
+            (nzOnConfirm)="restart(book.id)"
+            *ngIf="book.state === 'error' || book.download.state === 'error'"
+          >
+            restart
+          </a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a
+            nz-popconfirm
+            nzPopconfirmTitle="Are you sure delete this book?"
+            nzPopconfirmPlacement="bottom"
+            (nzOnConfirm)="delete(book.id)"
+          >
+            delete
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</ng-container>

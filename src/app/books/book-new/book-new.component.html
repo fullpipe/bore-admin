@@ -1,0 +1,31 @@
+<form nz-form #bookForm="ngForm">
+  <nz-form-item>
+    <nz-form-label nzFor="magnet">Magnet link</nz-form-label>
+    <textarea
+      nz-input
+      placeholder="magnet:?xt=urn:btih:xxx...."
+      nzAutosize
+      [(ngModel)]="magnet"
+      name="magnet"
+      nzRequired
+      minlength="20"
+    ></textarea>
+  </nz-form-item>
+  <div nz-row nzJustify="end">
+    <div nz-col>
+      <nz-form-item nz-row nzJustify="end" nz-row>
+        <nz-form-control>
+          <button
+            nz-col
+            nz-button
+            nzType="primary"
+            [disabled]="bookForm.invalid || bookForm.untouched"
+            (click)="submitForm()"
+          >
+            Add book
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
