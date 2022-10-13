@@ -2,6 +2,7 @@
 
 - [+] gql
 - [ ] auth
+- [ ] deploy
 - [+] book list
 - [+] add book
 - [+-] book download progress
