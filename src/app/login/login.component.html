@@ -1,1 +1,60 @@
-<p>login works!</p>
+<form
+  nz-form
+  [formGroup]="requestForm"
+  class="login-form"
+  (ngSubmit)="loginRequest()"
+  *ngIf="!requestID"
+>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your email!">
+      <nz-input-group nzPrefixIcon="user">
+        <input
+          type="email"
+          nz-input
+          formControlName="email"
+          placeholder="Email"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <button
+    nz-button
+    nzType="primary"
+    [disabled]="requestForm.invalid"
+    [nzLoading]="loading"
+  >
+    <span nz-icon nzType="login"></span>
+    Request otp
+  </button>
+</form>
+
+<form
+  nz-form
+  [formGroup]="codeForm"
+  class="login-form"
+  (ngSubmit)="login()"
+  *ngIf="requestID"
+>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please enter valid OTP code!">
+      <nz-input-group nzPrefixIcon="lock">
+        <input
+          type="text"
+          nz-input
+          formControlName="code"
+          placeholder="OTP code"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <button
+    nz-button
+    nzType="primary"
+    [disabled]="codeForm.invalid"
+    [nzLoading]="loading"
+  >
+    <span nz-icon nzType="login"></span>
+    Log in
+  </button>
+</form>

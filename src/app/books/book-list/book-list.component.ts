@@ -19,9 +19,12 @@ export class BookListComponent implements OnInit {
   restart(bookID: number) {
     console.log('restart', bookID);
   }
+
   delete(bookID: number) {
     console.log('delete', bookID);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.booksGql.watch().refetch();
+  }
 }

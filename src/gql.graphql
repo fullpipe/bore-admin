@@ -34,3 +34,23 @@ mutation createBook($input: NewBookInput!) {
     id
   }
 }
+
+mutation loginRequest($input: LoginRequestInput!) {
+  loginRequest(input: $input)
+}
+
+mutation login($input: LoginInput!) {
+  login(input: $input) {
+    access
+    refresh
+    roles
+  }
+}
+
+mutation refresh($refreshToken: String!) {
+  refreshToken(refreshToken: $refreshToken) {
+    access
+    refresh
+    roles
+  }
+}
